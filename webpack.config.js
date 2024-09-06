@@ -1,20 +1,22 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const Dotenv = require("dotenv-webpack");
-const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.tsx",
   output: {
-    publicPath: "http://localhost:3001/", // Cambiar según el puerto del proyecto
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
-  mode: "development",
+  mode: "production",
   devServer: {
     hot: true,
-    port: 3001, // Cambiar según el puerto del proyecto
+    port: 3001,
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -45,13 +47,13 @@ module.exports = {
           eager: true,
         },
         react: {
-          singleton: true, // Asegúrate de que sea singleton
-          eager: true, // Esto permite la carga eager
+          singleton: true,
+          eager: true,
           requiredVersion: "18.3.1",
         },
         "react-dom": {
           singleton: true,
-          eager: true, // Lo mismo para react-dom
+          eager: true,
           requiredVersion: "18.3.1",
         },
       },
