@@ -18,6 +18,9 @@ module.exports = {
     hot: true,
     port: 3001,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   },
   module: {
     rules: [
@@ -58,6 +61,7 @@ module.exports = {
           requiredVersion: "18.3.1",
         },
       },
+      chunkLoadingGlobal: `webpackChunk_searchBar`,
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
