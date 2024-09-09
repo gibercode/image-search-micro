@@ -6,8 +6,7 @@ const path = require("path");
 module.exports = {
   entry: "./src/index.tsx",
   output: {
-    filename: "[name].[contenthash].js",
-    chunkFilename: "[name].[contenthash].js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
     publicPath: "auto",
   },
